@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container-fluid">
+  <div class="row p-5">
+    <div class="col-lg-6">
+      <h1>Habits</h1>
+      <table class="table table-hover">
+        <tbody>
+          <% habits.forEach(item => { %>
+          <tr class="habit<%=item.ID%>">
+            <td><%= item.name %></td>
+            <td class="tableIcon"><i class="fa-regular fa-trash-can" data-value=<%= item.ID %>></i> <i class="fa-regular fa-pen-to-square" data-value=<%= item.ID %>></i></td>
+          </tr>
+          <tr class="form<%=item.ID%> hide">
+            
+            <form class="col-lg-6 hide" action="/editHabit" method="post">
+               <td><input type="hidden" name="id" class="invisible" value=<%= item.ID %>> <input class="form-control" type="text" value="<%= item.name %>" name="habitName"> </td>
+               <td><button type="submit" class="btn btn-primary">Update</button></td>
+            </form>
+       
+          </tr>
+          <% }) %>
+          
+            <td colspan="12 add"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus hide"></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <form class="col-lg-6 hide" action="/addHabit" method="post">
+            <input class="form-control" type="text" placeholder="New habit" name="habitName">
+            <button type="submit" class="btn btn-primary my-3">Submit</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/manage.js"></script>
+<%- include("partials/footer.ejs") %>

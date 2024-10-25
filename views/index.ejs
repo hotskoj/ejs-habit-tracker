@@ -1,0 +1,121 @@
+<%- include("partials/header.ejs") %> <% const daysOfWeek = ["Sunday" ,"Monday"
+,"Tuesday" ,"Wednesday" ,"Thursday" ,"Friday", "Saturday"];%> <% const months =
+["January","February","March","April","May","June","July","August","September","October","November","December"];
+%>
+
+<div class="container-fluid px-5 py-3">
+  <% if (date.getHours() < 12) { %>
+  <h1>Good Morning, <%= user.firstName %> ⛅</h1>
+  <% } else if (date.getHours() < 18) { %>
+  <h1>Good Afternoon, <%= user.firstName %> ☀️</h1>
+  <% } else { %>
+  <h1>Good Evening, <%= user.firstName %> ⭐</h1>
+  <% } %>
+  <p>
+    <%= daysOfWeek[date.getDay()] %>, <%= months[date.getMonth()] %> <%=
+    date.getDate() %>, <%= date.getFullYear() %>
+  </p>
+</div>
+
+<div class="row px-5">
+  <div class="col-lg-4">
+    <h2>Weekly Overview:</h2>
+    <div class="week">
+      <% week.forEach((item, i) => { %>
+      <div class="weekStreak p-1">
+        <% if (item) {%>
+        <i class="fa-solid fa-circle-check fa-lg"></i>
+        <% }else { %>
+        <i class="fa-solid fa-circle"></i>
+        <% } %>
+        <p><%= daysOfWeek[i].substring(0,1) %></p>
+      </div>
+      <% }); %>
+    </div>
+
+    <h2 class="pt-5">Monthly Overview:</h2>
+    <div class="calendar calendar-first" id="calendar_first">
+      <div class="calendar_header">
+        <button class="switch-month switch-left">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <h2></h2>
+        <button class="switch-month switch-right">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="calendar_weekdays"></div>
+      <div class="calendar_content"></div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <h2>Things To Do Today:</h2>
+    <div id="habits">
+      <% if (habits.length !== 0) { %> <% habits.forEach(item => { %>
+      <div class="form-check">
+        <input
+          class="form-check-input addComplete"
+          type="checkbox"
+          name="completedItemID"
+          value="<%= item.ID %>"
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          <%= item.name %>
+        </label>
+      </div>
+      <% }); %> <% } else { %>
+      <figure>
+        <img
+          src="images/completedImg.jpeg"
+          alt="Women drinking coffee"
+          class="nothingToDO"
+        />
+        <figcaption>
+          Design by <a href="http://www.freepik.com/">Freepik</a>
+        </figcaption>
+      </figure>
+      <p class="caption">Nothing to do but enjoy a cup of coffee...</p>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <h2>Completed:</h2>
+    <div id="completed">
+      <% if (completed.length !== 0) { completed.forEach(item => { %>
+      <div class="form-check">
+        <input
+          class="form-check-input deleteComplete"
+          type="checkbox"
+          name="completedItemID"
+          value="<%= item.ID %>"
+          checked
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          <%= item.name %>
+        </label>
+      </div>
+      <% });} else { %>
+      <figure>
+        <img
+          src="images/workToDo.jpeg"
+          alt="Women working on computer"
+          class="workToDO"
+        />
+        <figcaption>
+          Design by <a href="http://www.freepik.com/">Freepik</a>
+        </figcaption>
+      </figure>
+      <p class="caption">Let's get to work!</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<script>
+  let completedDays = <%- JSON.stringify(completedDays)%>
+</script>
+
+<script src="js/main.js"></script>
+<%- include("partials/footer.ejs") %>

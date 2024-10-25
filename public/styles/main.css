@@ -1,0 +1,52 @@
+main {
+    min-height: 85vh;
+}
+
+footer {
+    text-align: center;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+figcaption {
+    font-size: 10px;
+}
+
+h1.getStarted {
+    text-align: center;
+}
+
+.fa-circle {
+    font-size: 20px;
+}
+
+.weekStreak {
+    display: inline-block;
+    text-align: center;
+}
+
+.fa-circle {
+    color: #E2DAD6;
+}
+
+.nothingToDO{
+    width: 75%
+}
+
+.workToDO{
+    width: 75%
+}
+
+.caption {
+    font-size: 20px;;
+}
+
+.tableIcon {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,12 @@
+<%- include("partials/header.ejs") %> 
+<div class="row justify-content-center align-center">
+    <h1 class="getStarted pt-5">You have no habits! Let's change that</h1>
+    <form class="col-lg-4 p-5" action="/addHabit" method="post">
+      <div class="mb-3">
+        <label for="habitName" class="form-label">New Habit:</label>
+        <input class="form-control" type="text" id="habitName" name="habitName" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<%- include("partials/footer.ejs") %>
